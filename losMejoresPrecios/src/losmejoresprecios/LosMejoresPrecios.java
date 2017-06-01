@@ -5,6 +5,8 @@
  */
 package losmejoresprecios;
 
+import Conection.conectarBD;
+
 /**
  *
  * @author martin
@@ -18,6 +20,7 @@ public class LosMejoresPrecios {
         // TODO code application logic here
         //Hola prro
         //Me hacen falta
+        conectarBD nuevo=new conectarBD();
     }
     
 }
