@@ -41,12 +41,12 @@ public class Empleados extends javax.swing.JFrame {
      * Creates new form Clientes
      */
     conectarBD cn;
-    cliente reg =new cliente ();
+    cliente reg = new cliente();
 
     public Empleados() {
         initComponents();
         setLocationRelativeTo(null);
-         actualizar_pendientes();
+        actualizar_pendientes();
     }
 
     /**
@@ -279,29 +279,30 @@ public class Empleados extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // Nuevo registro
-       try{ 
-       reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
-       reg.setNombre(this.nombre.getText());
-       reg.setApellido(this.apellido.getText());
-       reg.setDireccion(direccion1.getText());
-       reg.setTelefono(Integer.parseInt(telefono.getText()));
-       reg.setSexo(this.JCBsexo.getSelectedItem().toString());
-       reg.setCargo(cargo.getSelectedItem().toString());
-       reg.setFechaingreso(fecha.getDateFormatString());
-       reg.setSalario(salario.getText());
-       reg.setAccion("new");
-       }catch(NumberFormatException e){
-        JOptionPane.showMessageDialog(null,"Error" +e);   
-       }  
-      cn=new conectarBD();
-    String res= cn.Procedimiento(reg.getCodEmp(),reg.getNombre(),reg.getApellido(),
-              reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
-                reg.getSalario(),reg.getAccion());
-        JOptionPane.showMessageDialog(null,"" +res);   
-      
-actualizar_pendientes();
- this.jButton2.setEnabled(true);
-          this.jButton1.setEnabled(true);
+        try {
+            reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
+            reg.setNombre(this.nombre.getText());
+            reg.setApellido(this.apellido.getText());
+            reg.setDireccion(direccion1.getText());
+            reg.setTelefono(Integer.parseInt(telefono.getText()));
+            reg.setSexo(this.JCBsexo.getSelectedItem().toString());
+            reg.setCargo(cargo.getSelectedItem().toString());
+            reg.setFechaingreso(fecha.getDateFormatString());
+            reg.setSalario(salario.getText());
+            reg.setAccion("new");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
+        }
+        cn = new conectarBD();
+        String res = cn.Procedimiento(reg.getCodEmp(), reg.getNombre(), reg.getApellido(),
+                reg.getDireccion(), reg.getTelefono(), reg.getSexo(), reg.getCargo(), reg.getFechaingreso(),
+                reg.getSalario(), reg.getAccion());
+        JOptionPane.showMessageDialog(null, "" + res);
+
+        actualizar_pendientes();
+        Borrar();
+        this.jButton2.setEnabled(true);
+        this.jButton1.setEnabled(true);
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void JCBsexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBsexoActionPerformed
@@ -313,134 +314,126 @@ actualizar_pendientes();
     }//GEN-LAST:event_cargoActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+        //Lanzar datos a panel ingreso de Datos
 
         int fila = this.jTable1.getSelectedRow();
+        try {
+            reg.setCodEmp(Integer.parseInt(jTable1.getValueAt(fila, 0).toString()));
+            reg.setNombre(jTable1.getValueAt(fila, 1).toString());
+            reg.setApellido(jTable1.getValueAt(fila, 2).toString());
+            reg.setDireccion(jTable1.getValueAt(fila, 3).toString());
+            reg.setTelefono(Integer.parseInt(jTable1.getValueAt(fila, 4).toString()));
+            reg.setSexo(jTable1.getValueAt(fila, 5).toString());
 
-        /*for (i = 0; i <this.jTable1.getColumnCount(); i++) {
-        
-        
-        String valor = (String) jTable1.getValueAt(fila, i).toString();
-        valores += valor;
-        // Con esta condición solo ponemos comas hasta el penúltimo valor :)
-        if (i < (fila-1)) {
-        valores += ", ";
+            reg.setCargo(jTable1.getValueAt(fila, 6).toString());
+
+            reg.setFechaingreso(jTable1.getValueAt(fila, 7).toString());
+            reg.setSalario(jTable1.getValueAt(fila, 8).toString());
+            reg.setAccion("query");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
         }
-        
-        }*/
-       
-       try{ 
-       reg.setCodEmp(Integer.parseInt(jTable1.getValueAt(fila, 0).toString()));
-       reg.setNombre(jTable1.getValueAt(fila, 1).toString());
-       reg.setApellido(jTable1.getValueAt(fila, 2).toString());
-       reg.setDireccion(jTable1.getValueAt(fila, 3).toString());
-       reg.setTelefono(Integer.parseInt(jTable1.getValueAt(fila, 4).toString()));
-       reg.setSexo(jTable1.getValueAt(fila, 5).toString());
-       
-       reg.setCargo(jTable1.getValueAt(fila, 6).toString());
-       
-       reg.setFechaingreso(jTable1.getValueAt(fila, 7).toString());
-       reg.setSalario(jTable1.getValueAt(fila, 8).toString());
-       reg.setAccion("query");
-       }catch(NumberFormatException e){
-        JOptionPane.showMessageDialog(null,"Error" +e);   
-       }  
-      
-       id_empleado.setText(String.valueOf(reg.getCodEmp()));
-       nombre.setText(reg.getNombre());
-       apellido.setText(reg.getApellido());
-       direccion1.setText(reg.getDireccion());
-       telefono.setText(String.valueOf(reg.getTelefono()));
-       salario.setText(reg.getSalario());
-       fecha.setDateFormatString(reg.getFechaingreso());
-       
-             String itemSeleecionado = jTable1.getValueAt(fila, 5).toString();
-if ("F".equals(itemSeleecionado) ){
-   this.JCBsexo.setSelectedIndex(1);
-}else{
-    this.JCBsexo.setSelectedIndex(0);
-}
-       
-itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
-    
-    switch(itemSeleecionado){
-        case "Cobrador":  this.cargo.setSelectedIndex(0); 
-        break;
-         case "Vendedor":  this.cargo.setSelectedIndex(1);
-         break;
-         case "Encargado de compras": this.cargo.setSelectedIndex(2);
-          break;
-         case "Encargado  Tienda": this.cargo.setSelectedIndex(3);
-          break;
-          
-         default: this.cargo.setSelectedIndex(0); 
-         break;       
 
-    }
+        id_empleado.setText(String.valueOf(reg.getCodEmp()));
+        nombre.setText(reg.getNombre());
+        apellido.setText(reg.getApellido());
+        direccion1.setText(reg.getDireccion());
+        telefono.setText(String.valueOf(reg.getTelefono()));
+        salario.setText(reg.getSalario());
+        fecha.setDateFormatString(reg.getFechaingreso());
 
- 
+        String itemSeleecionado = jTable1.getValueAt(fila, 5).toString();
+        if ("F".equals(itemSeleecionado)) {
+            this.JCBsexo.setSelectedIndex(1);
+        } else {
+            this.JCBsexo.setSelectedIndex(0);
+        }
+
+        itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
+
+        switch (itemSeleecionado) {
+            case "Cobrador":
+                this.cargo.setSelectedIndex(0);
+                break;
+            case "Vendedor":
+                this.cargo.setSelectedIndex(1);
+                break;
+            case "Encargado de compras":
+                this.cargo.setSelectedIndex(2);
+                break;
+            case "Encargado  Tienda":
+                this.cargo.setSelectedIndex(3);
+                break;
+
+            default:
+                this.cargo.setSelectedIndex(0);
+                break;
+
+        }
+
+        this.jButton2.setEnabled(true);
+        this.jButton1.setEnabled(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-  try{ 
-       reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
-       reg.setNombre(this.nombre.getText());
-       reg.setApellido(this.apellido.getText());
-       reg.setDireccion(direccion1.getText());
-       reg.setTelefono(Integer.parseInt(telefono.getText()));
-       reg.setSexo(this.JCBsexo.getSelectedItem().toString());
-       reg.setCargo(cargo.getSelectedItem().toString());
-       reg.setFechaingreso(fecha.getDateFormatString());
-       reg.setSalario(salario.getText());
-       reg.setAccion("update");
-       }catch(NumberFormatException e){
-        JOptionPane.showMessageDialog(null,"Error" +e);   
-       }  
-      cn=new conectarBD();
-    String res= cn.Procedimiento(reg.getCodEmp(),reg.getNombre(),reg.getApellido(),
-              reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
-                reg.getSalario(),reg.getAccion());
-        JOptionPane.showMessageDialog(null,"" +res);   
-       actualizar_pendientes(); 
-      Borrar();
+        try {
+            reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
+            reg.setNombre(this.nombre.getText());
+            reg.setApellido(this.apellido.getText());
+            reg.setDireccion(direccion1.getText());
+            reg.setTelefono(Integer.parseInt(telefono.getText()));
+            reg.setSexo(this.JCBsexo.getSelectedItem().toString());
+            reg.setCargo(cargo.getSelectedItem().toString());
+            reg.setFechaingreso(fecha.getDateFormatString());
+            reg.setSalario(salario.getText());
+            reg.setAccion("update");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
+        }
+        cn = new conectarBD();
+        String res = cn.Procedimiento(reg.getCodEmp(), reg.getNombre(), reg.getApellido(),
+                reg.getDireccion(), reg.getTelefono(), reg.getSexo(), reg.getCargo(), reg.getFechaingreso(),
+                reg.getSalario(), reg.getAccion());
+        JOptionPane.showMessageDialog(null, "" + res);
+        actualizar_pendientes();
+        Borrar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       
-        
+
         int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
-        if(resp==0){
-         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel(); //TableProducto es el nombre de mi tabla ;) 
-         int fila=jTable1.getSelectedRow();  
-         if (fila< 1) {
-          this.jButton2.setEnabled(false);
-          this.jButton1.setEnabled(false);
-         } 
-          dtm.removeRow(jTable1.getSelectedRow()); 
-          try{ 
-       reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
-       reg.setNombre(this.nombre.getText());
-       reg.setApellido(this.apellido.getText());
-       reg.setDireccion(direccion1.getText());
-       reg.setTelefono(Integer.parseInt(telefono.getText()));
-       reg.setSexo(this.JCBsexo.getSelectedItem().toString());
-       reg.setCargo(cargo.getSelectedItem().toString());
-       reg.setFechaingreso(fecha.getDateFormatString());
-       reg.setSalario(salario.getText());
-       reg.setAccion("delete");
-       }catch(NumberFormatException e){
-        JOptionPane.showMessageDialog(null,"Error" +e);   
-       }  
-      cn=new conectarBD();
-    String res= cn.Procedimiento(reg.getCodEmp(),reg.getNombre(),reg.getApellido(),
-              reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
-                reg.getSalario(),reg.getAccion());
-        JOptionPane.showMessageDialog(null,"" +res); 
+        if (resp == 0) {
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel(); //TableProducto es el nombre de mi tabla ;) 
+            int fila = jTable1.getSelectedRow();
+            if (fila < 1) {
+                this.jButton2.setEnabled(false);
+                this.jButton1.setEnabled(false);
+            }
+            dtm.removeRow(jTable1.getSelectedRow());
+            try {
+                reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
+                reg.setNombre(this.nombre.getText());
+                reg.setApellido(this.apellido.getText());
+                reg.setDireccion(direccion1.getText());
+                reg.setTelefono(Integer.parseInt(telefono.getText()));
+                reg.setSexo(this.JCBsexo.getSelectedItem().toString());
+                reg.setCargo(cargo.getSelectedItem().toString());
+                reg.setFechaingreso(fecha.getDateFormatString());
+                reg.setSalario(salario.getText());
+                reg.setAccion("delete");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error" + e);
+            }
+            cn = new conectarBD();
+            String res = cn.Procedimiento(reg.getCodEmp(), reg.getNombre(), reg.getApellido(),
+                    reg.getDireccion(), reg.getTelefono(), reg.getSexo(), reg.getCargo(), reg.getFechaingreso(),
+                    reg.getSalario(), reg.getAccion());
+            JOptionPane.showMessageDialog(null, "" + res);
         }
-      actualizar_pendientes();
-       Borrar();  
+        actualizar_pendientes();
+        Borrar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void NUEVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NUEVOActionPerformed
@@ -449,59 +442,58 @@ itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
     }//GEN-LAST:event_NUEVOActionPerformed
     void actualizar_pendientes() {
 
-        DefaultTableModel modelo = new DefaultTableModel(null,getcolumnas());
-       
+        DefaultTableModel modelo = new DefaultTableModel(null, getcolumnas());
 
         this.jTable1.setModel(modelo);
 
         String sql = "SELECT * FROM losMejoresPrecios.empleado";
-        
-     
+
         try {
             cn = new conectarBD();
-            
+
             PreparedStatement st = cn.getConexion().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
-           
-            Object dato[]=new Object[9];
+
+            Object dato[] = new Object[9];
             while (rs.next()) {
                 for (int i = 0; i < dato.length; i++) {
-                   dato[i]=rs.getObject(i+1);
-                    
+                    dato[i] = rs.getObject(i + 1);
+
                 }
-                
+
                 modelo.addRow(dato);
             }
-          
+
             this.jTable1.setModel(modelo);
         } catch (SQLException ex) {
-           
-            System.out.println(ex);
-        }
-        //
-        
-    }
-    void Borrar(){
-      id_empleado.setText("");
-       nombre.setText("");
-       apellido.setText("");
-       direccion1.setText("");
-       telefono.setText("");
-       salario.setText("");
-       fecha.setDateFormatString("");
-       
 
-   this.JCBsexo.setSelectedIndex(0);
-
-    this.cargo.setSelectedIndex(0); 
-       
-    }
-    
-        private String[] getcolumnas(){
-            String columna[]=new String[]{"Id","Nombre","Apellido","Direccion","Telefono","Sexo","Cargo","Fecha Ingreo","Salario"};
-            return columna;
+            JOptionPane.showMessageDialog(null, "" + ex);       
         }
-                
+       this.jButton2.setEnabled(false);
+        this.jButton1.setEnabled(false);
+
+    }
+
+    void Borrar() {
+        id_empleado.setText("");
+        nombre.setText("");
+        apellido.setText("");
+        direccion1.setText("");
+        telefono.setText("");
+        salario.setText("");
+        fecha.setToolTipText("");
+
+        this.JCBsexo.setSelectedIndex(0);
+
+        this.cargo.setSelectedIndex(0);
+        this.jButton2.setEnabled(false);
+        this.jButton1.setEnabled(false);
+    }
+
+    private String[] getcolumnas() {
+        String columna[] = new String[]{"Id", "Nombre", "Apellido", "Direccion", "Telefono", "Sexo", "Cargo", "Fecha Ingreo", "Salario"};
+        return columna;
+    }
 
     /**
      * @param args the command line arguments

@@ -132,7 +132,7 @@ public class conectarBD {
     
      public  String Procedimiento(int codEmp, String nombre, String apellido, String direccion, int telefono, String sexo, String cargo, String fechaingreso, String salario, String accion){
         
-       String mensaje="Operaacion Realizada con Exito";
+       String mensaje="";
         try {
             
              con = getConexion();
@@ -145,7 +145,6 @@ public class conectarBD {
                 CallableStatement sp=con.prepareCall("{call insertar_empleados(?,?,?,?,?,?,?,?,?,?)}");
                
                 sp.setInt(1,codEmp);
-                //sp.registerOutParameter(1, java.sql.Types.INTEGER); 
                 sp.setString(2,nombre);
                 sp.setString(3,apellido);
                 sp.setString(4,direccion);
@@ -158,10 +157,13 @@ public class conectarBD {
                 sp.setString(9,salario);
                 sp.setString(10,accion);
             
-                sp.execute();
+               if( sp.execute())
+
                 
                 st.close();
                 con.close();
+                
+               mensaje="Operacion realizada con Exito";
             }
         } catch (SQLException e) {
             mensaje="Error al conectar: "+e;
@@ -169,7 +171,6 @@ public class conectarBD {
             mensaje="Error: "+e;
         }
         
-        System.out.println(mensaje); 
         return mensaje;
                 
     }
