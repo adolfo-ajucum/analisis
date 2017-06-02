@@ -215,6 +215,48 @@ public class conectarBD {
         return mensaje;
                 
     }
+    
+    public  String ProcedimientoProducto(int idProducto, String descripcion, int idCategoria, float preciocompra, float precioventa,
+            int existencia,String garantia,String accion){
+        
+       String mensaje="";
+        try {
+            
+             con = getConexion();
+ 
+            if (con == null) {
+                mensaje = "No hay conexión a la base de datos...!";
+            } else {
+                Statement st = con.createStatement();
+          
+                CallableStatement sp=con.prepareCall("{call insertar_productos(?,?,?,?,?,?,?,?)}");
+               
+                sp.setInt(1,idProducto);
+                sp.setString(2,descripcion);
+                sp.setInt(3,idCategoria);
+                sp.setFloat(4,preciocompra);
+                sp.setFloat(5,precioventa);
+                sp.setInt(6,existencia);
+                sp.setString(7,garantia);
+                sp.setString(8,accion);
+            
+               if( sp.execute())
+
+                
+                st.close();
+                con.close();
+                
+               mensaje="Operacion realizada con Exito";
+            }
+        } catch (SQLException e) {
+            mensaje="Error al conectar: "+e;
+        } catch (Exception e) {
+            mensaje="Error: "+e;
+        }
+        
+        return mensaje;
+                
+    }
 
 }
    
