@@ -5,6 +5,13 @@
  */
 package INTERFACES;
 
+import Conection.conectarBD;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+
 /**
  *
  * @author DAVID
@@ -96,6 +103,11 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
 
         Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
         jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
@@ -130,6 +142,12 @@ public class Empleados extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_AgregarActionPerformed
 
     /**
      * @param args the command line arguments

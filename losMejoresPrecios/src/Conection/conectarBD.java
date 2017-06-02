@@ -28,7 +28,7 @@ public class conectarBD {
       try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            url="jdbc:mysql://"+"analisis.cxlcq8r3vcp4.us-west-2.rds.amazonaws.com:3306"+"/"+database;
+            url="jdbc:mysql://"+"analisis.cxlcq8r3vcp4.us-west-2.rds.amazonaws.com:3306"+"/"+database+"?autoReconnect=true&useSSL=false";
             conexion=(Connection) DriverManager.getConnection(url,usuario,password);
             System.out.println("Conexion a Base de Datos "+url+" . . . . .Ok");
          }
@@ -40,22 +40,17 @@ public class conectarBD {
         return conexion;
     }
     //--MARLON LIBRERIAS----------------------------------------------------------------------------
-    public boolean conectar(String bd, String usuario,String clave){
+    public boolean conectar(){
         try{
             //un formulario donde este el driver
             Class.forName("com.mysql.jdbc.Driver");
             //con=DriverManager.getConnection("jdbc:mysql://localhost/" + bd + "?user=" + "&password=" + clave);
-            con=DriverManager.getConnection("jdbc:mysql://analisis.cxlcq8r3vcp4.us-west-2.rds.amazonaws.com:3306/" + bd + "?user=" + usuario + "&password=" + clave);
+            con=getConexion();
             return true;
         }catch(ClassNotFoundException cnfe){
             lastError= cnfe.getMessage();
             return false;
         }
-    catch(SQLException sqle)
-    {
-        lastError= sqle.getMessage();
-            return false;
-    }
     }//--------------------------------------------------------------------------
      public boolean desconectar()
     {

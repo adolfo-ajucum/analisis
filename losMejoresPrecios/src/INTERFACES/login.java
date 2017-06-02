@@ -7,7 +7,9 @@ package INTERFACES;
 
 import Conection.conectarBD;
 import java.awt.Desktop;
+import java.awt.HeadlessException;
 import java.net.URI;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,11 +141,11 @@ conectarBD con;
           // Boton Ingresar al Sistema
         con = new conectarBD();
         String user;
-        String clave;
+       // String clave;
         try
         {
             conectarBD oControlDB=new conectarBD();
-            if(oControlDB.conectar("losMejoresPrecios","usuario","1490Martin")){
+            if(oControlDB.conectar()){
                 user=usuario.getText();
                 String obtiene =new String(password.getPassword());
                 //clave=obtiene.toString();
@@ -151,16 +153,16 @@ conectarBD con;
                     principal p = new principal();
                     p.setVisible(true);
                     login.this.dispose();
+                  
                 }
                 else{
                     JOptionPane.showMessageDialog(this,"USUARIO INCORRECTO");
                 }
-                if (!oControlDB.desconectar()){
-                    JOptionPane.showMessageDialog(this,"va un error de catch 1");
-                }
+               oControlDB.getConexion().close();
+                   
             }
 
-        }catch(Exception ex){
+        }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,"Erro en la conexion"+ex);
         }
     }//GEN-LAST:event_ingresarActionPerformed
