@@ -5,6 +5,9 @@
  */
 package INTERFACES;
 
+import CAPADENEGOCIO.cliente;
+import Conection.conectarBD;
+
 /**
  *
  * @author DAVID
@@ -14,6 +17,8 @@ public class Proveedor extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
+    conectarBD cn;
+    cliente reg = new cliente();
     public Proveedor() {
         initComponents();
         setLocationRelativeTo(null);
@@ -42,7 +47,7 @@ public class Proveedor extends javax.swing.JFrame {
         telefono = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         correo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        GUARDAR = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,8 +97,13 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 50, -1));
         jPanel1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 170, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        GUARDAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
+        GUARDAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GUARDARActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GUARDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +134,11 @@ public class Proveedor extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_regresarActionPerformed
+
+    private void GUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUARDARActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_GUARDARActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,11 +177,11 @@ public class Proveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GUARDAR;
     private javax.swing.JTextField Nit;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;
     private javax.swing.JTextField id_proveedor;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
