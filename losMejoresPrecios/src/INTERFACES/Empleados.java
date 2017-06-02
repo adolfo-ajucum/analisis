@@ -69,9 +69,7 @@ public class Empleados extends javax.swing.JFrame {
         id_empleado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         salario = new javax.swing.JTextField();
-        Agregar = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
-        NUEVO = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -83,8 +81,11 @@ public class Empleados extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         telefono = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        NUEVO = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,25 +127,13 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 110, 20));
         jPanel1.add(salario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 170, -1));
 
-        Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
-        Agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 90, 70));
-
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, 80, 30));
-
-        NUEVO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        NUEVO.setText("NUEVO");
-        jPanel1.add(NUEVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, -1, 30));
+        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 570, 80, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,13 +194,15 @@ public class Empleados extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 110, 20));
         jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 170, -1));
 
+        jPanel2.setBackground(java.awt.Color.lightGray);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Opciones")));
+
         jButton1.setText("Editar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 100, 50));
 
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -219,13 +210,57 @@ public class Empleados extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 80, 50));
+
+        Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+
+        NUEVO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        NUEVO.setText("NUEVO");
+        NUEVO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NUEVOActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(NUEVO, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NUEVO, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 520, 130));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +299,9 @@ public class Empleados extends javax.swing.JFrame {
                 reg.getSalario(),reg.getAccion());
         JOptionPane.showMessageDialog(null,"" +res);   
       
-
+actualizar_pendientes();
+ this.jButton2.setEnabled(true);
+          this.jButton1.setEnabled(true);
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void JCBsexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBsexoActionPerformed
@@ -365,8 +402,8 @@ itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
               reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
                 reg.getSalario(),reg.getAccion());
         JOptionPane.showMessageDialog(null,"" +res);   
-        
-     
+       actualizar_pendientes(); 
+      Borrar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -379,12 +416,37 @@ itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
          int fila=jTable1.getSelectedRow();  
          if (fila< 1) {
           this.jButton2.setEnabled(false);
+          this.jButton1.setEnabled(false);
          } 
           dtm.removeRow(jTable1.getSelectedRow()); 
+          try{ 
+       reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
+       reg.setNombre(this.nombre.getText());
+       reg.setApellido(this.apellido.getText());
+       reg.setDireccion(direccion1.getText());
+       reg.setTelefono(Integer.parseInt(telefono.getText()));
+       reg.setSexo(this.JCBsexo.getSelectedItem().toString());
+       reg.setCargo(cargo.getSelectedItem().toString());
+       reg.setFechaingreso(fecha.getDateFormatString());
+       reg.setSalario(salario.getText());
+       reg.setAccion("delete");
+       }catch(NumberFormatException e){
+        JOptionPane.showMessageDialog(null,"Error" +e);   
+       }  
+      cn=new conectarBD();
+    String res= cn.Procedimiento(reg.getCodEmp(),reg.getNombre(),reg.getApellido(),
+              reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
+                reg.getSalario(),reg.getAccion());
+        JOptionPane.showMessageDialog(null,"" +res); 
         }
-      
-        
+      actualizar_pendientes();
+       Borrar();  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void NUEVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NUEVOActionPerformed
+        // TODO add your handling code here:
+        Borrar();
+    }//GEN-LAST:event_NUEVOActionPerformed
     void actualizar_pendientes() {
 
         DefaultTableModel modelo = new DefaultTableModel(null,getcolumnas());
@@ -394,7 +456,7 @@ itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
 
         String sql = "SELECT * FROM losMejoresPrecios.empleado";
         
-          boolean rp =false;
+     
         try {
             cn = new conectarBD();
             
@@ -418,6 +480,21 @@ itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
         }
         //
         
+    }
+    void Borrar(){
+      id_empleado.setText("");
+       nombre.setText("");
+       apellido.setText("");
+       direccion1.setText("");
+       telefono.setText("");
+       salario.setText("");
+       fecha.setDateFormatString("");
+       
+
+   this.JCBsexo.setSelectedIndex(0);
+
+    this.cargo.setSelectedIndex(0); 
+       
     }
     
         private String[] getcolumnas(){
@@ -484,6 +561,7 @@ itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;

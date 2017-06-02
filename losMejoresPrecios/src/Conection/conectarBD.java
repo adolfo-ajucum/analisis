@@ -12,7 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class conectarBD {
 //Datos para la conexion
@@ -148,8 +152,8 @@ public class conectarBD {
                 sp.setInt(5,telefono);
                 sp.setString(6,sexo);
                 sp.setString(7,cargo);
-               java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
-               // java.sql.Date sqlDate = new java.sql.Date(20110801);
+                java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+                
                 sp.setDate(8,sqlDate);
                 sp.setString(9,salario);
                 sp.setString(10,accion);
