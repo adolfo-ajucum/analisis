@@ -32,7 +32,7 @@ public class Facturas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         GenerarFactura = new javax.swing.JButton();
         AgregarCliente = new javax.swing.JButton();
-        total = new javax.swing.JTextField();
+        descuento = new javax.swing.JTextField();
         regresar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,18 +40,35 @@ public class Facturas extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         fecha = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        serie2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        estado = new javax.swing.JTextField();
+        serie = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        t_pago = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         datos = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         id_factura = new javax.swing.JTextField();
-        id_cliente = new javax.swing.JTextField();
-        id_empleado = new javax.swing.JTextField();
+        nit = new javax.swing.JTextField();
+        codigo_cliente = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        direccioncliente = new javax.swing.JTextField();
+        tipodepago = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        total1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        iva = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        nombreempleado_factu = new javax.swing.JTextField();
+        buscacliente = new javax.swing.JButton();
+        buscaempleado = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        nombrecliente = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        codigo_empleado_factu = new javax.swing.JTextField();
+        iva1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        anulacionfactura = new javax.swing.JButton();
+        estadofactura = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 102));
@@ -68,11 +85,11 @@ public class Facturas extends javax.swing.JFrame {
                 GenerarFacturaActionPerformed(evt);
             }
         });
-        jPanel1.add(GenerarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
+        jPanel1.add(GenerarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 570, -1, -1));
 
         AgregarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496212138_floppy_disk_save.png"))); // NOI18N
-        jPanel1.add(AgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 100, 100));
-        jPanel1.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 470, 130, -1));
+        jPanel1.add(AgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 70, 50));
+        jPanel1.add(descuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 500, 130, -1));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -80,52 +97,45 @@ public class Facturas extends javax.swing.JFrame {
                 regresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 70, 50));
+        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, 70, 50));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Total");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 70, 20));
+        jLabel8.setText("Descuento");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 500, 70, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Fecha");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 70, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tipo de pago");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 100, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 470, 100, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Id Facturas");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 70, -1));
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 170, -1));
+        jLabel9.setText("Numero de Factura");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 120, -1));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Serie");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 80, -1));
-        jPanel1.add(serie2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 170, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("EStado");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 110, 100, -1));
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 130, 170, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 40, -1));
+        jPanel1.add(serie, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 80, -1));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("FACTURAS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 380, -1));
-        jPanel1.add(t_pago, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 180, -1));
+        jLabel1.setText("Venta de Productos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 380, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Id Cliente");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 100, -1));
+        jLabel7.setText("Nit:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, 40, -1));
 
         datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,17 +150,114 @@ public class Facturas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(datos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 810, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 1190, 270));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Id Empleado");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 100, -1));
-        jPanel1.add(id_factura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 180, -1));
-        jPanel1.add(id_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 180, -1));
-        jPanel1.add(id_empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 180, -1));
+        jLabel10.setText("Codigo_Empleado:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 120, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 620));
+        id_factura.setEditable(false);
+        jPanel1.add(id_factura, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 90, 20));
+
+        nit.setEditable(false);
+        jPanel1.add(nit, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, 100, -1));
+
+        codigo_cliente.setEditable(false);
+        jPanel1.add(codigo_cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 70, 40, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Direccion:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, 100, -1));
+
+        direccioncliente.setEditable(false);
+        jPanel1.add(direccioncliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 100, 450, -1));
+
+        tipodepago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Cheque", "Tarjeta de Credito", "Tarjeta de Debito", "Credito", " " }));
+        tipodepago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipodepagoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tipodepago, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Total");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 520, 70, 20));
+
+        total1.setEditable(false);
+        jPanel1.add(total1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 520, 130, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Iva:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 480, 70, 20));
+
+        iva.setEditable(false);
+        jPanel1.add(iva, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 480, 130, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Nombre del Empleado:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 140, -1));
+
+        nombreempleado_factu.setEditable(false);
+        jPanel1.add(nombreempleado_factu, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 200, -1));
+
+        buscacliente.setText("Buscar Cliente F2");
+        buscacliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaclienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscacliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 130, 50));
+
+        buscaempleado.setText("Buscar Empleado F1");
+        buscaempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaempleadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscaempleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, 130, 50));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Nombre:");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 70, 100, -1));
+
+        nombrecliente.setEditable(false);
+        jPanel1.add(nombrecliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 70, 210, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Codigo_cliente:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 100, -1));
+
+        codigo_empleado_factu.setEditable(false);
+        jPanel1.add(codigo_empleado_factu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 50, -1));
+
+        iva1.setEditable(false);
+        jPanel1.add(iva1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 460, 130, -1));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("SubTotal");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 460, 70, 20));
+
+        anulacionfactura.setText("ANULACION");
+        jPanel1.add(anulacionfactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, 130, 50));
+
+        estadofactura.setEditable(false);
+        jPanel1.add(estadofactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 640, 170, -1));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Estado de la Factura:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, 140, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1320, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -168,6 +275,25 @@ public class Facturas extends javax.swing.JFrame {
         r.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_GenerarFacturaActionPerformed
+
+    private void tipodepagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipodepagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipodepagoActionPerformed
+
+    private void buscaempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaempleadoActionPerformed
+        // TODO add your handling code here:
+        Consultaempleadosfactura ver = new Consultaempleadosfactura();
+        ver.setVisible(true);
+        ver.setLocationRelativeTo(null);
+        //this.setVisible(false);
+    }//GEN-LAST:event_buscaempleadoActionPerformed
+
+    private void buscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaclienteActionPerformed
+        // TODO add your handling code here:
+        consultaclientes ver2 = new consultaclientes();
+        ver2.setVisible(true);
+        ver2.setLocationRelativeTo(null);
+    }//GEN-LAST:event_buscaclienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,6 +324,10 @@ public class Facturas extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -210,26 +340,43 @@ public class Facturas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarCliente;
     private javax.swing.JButton GenerarFactura;
+    private javax.swing.JButton anulacionfactura;
+    private javax.swing.JButton buscacliente;
+    private javax.swing.JButton buscaempleado;
+    public static javax.swing.JTextField codigo_cliente;
+    public static javax.swing.JTextField codigo_empleado_factu;
     private javax.swing.JTable datos;
-    private javax.swing.JTextField estado;
+    private javax.swing.JTextField descuento;
+    public static javax.swing.JTextField direccioncliente;
+    private javax.swing.JTextField estadofactura;
     private com.toedter.calendar.JDateChooser fecha;
-    private javax.swing.JTextField id_cliente;
-    private javax.swing.JTextField id_empleado;
     private javax.swing.JTextField id_factura;
+    private javax.swing.JTextField iva;
+    private javax.swing.JTextField iva1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JTextField nit;
+    public static javax.swing.JTextField nombrecliente;
+    public static javax.swing.JTextField nombreempleado_factu;
     private javax.swing.JButton regresar;
-    private javax.swing.JTextField serie2;
-    private javax.swing.JTextField t_pago;
-    private javax.swing.JTextField total;
+    private javax.swing.JTextField serie;
+    private javax.swing.JComboBox<String> tipodepago;
+    private javax.swing.JTextField total1;
     // End of variables declaration//GEN-END:variables
 }
