@@ -5,12 +5,17 @@
  */
 package INTERFACES;
 
+import Conection.conectarBD;
+import java.awt.Desktop;
+import java.net.URI;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SRVLOGNET
  */
 public class login extends javax.swing.JFrame {
-
+conectarBD con;
     /**
      * Creates new form login
      */
@@ -32,9 +37,9 @@ public class login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         usuario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         ingresar = new javax.swing.JButton();
         salir = new javax.swing.JToggleButton();
+        password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -56,35 +61,44 @@ public class login extends javax.swing.JFrame {
         jLabel6.setText("Password:");
 
         ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496194156_Manager.png"))); // NOI18N
+        ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarActionPerformed(evt);
+            }
+        });
 
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496210014_gnome-session-logout.png"))); // NOI18N
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(157, 157, 157))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(191, 191, 191)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)
-                            .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(password)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(ingresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                         .addComponent(salir)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 210, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(157, 157, 157))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,6 +133,43 @@ public class login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+        // Creando Usuario Login para entrar a la base de datos
+          // Boton Ingresar al Sistema
+        con = new conectarBD();
+        String user;
+        String clave;
+        try
+        {
+            conectarBD oControlDB=new conectarBD();
+            if(oControlDB.conectar("losMejoresPrecios","usuario","1490Martin")){
+                user=usuario.getText();
+                String obtiene =new String(password.getPassword());
+                //clave=obtiene.toString();
+                if(oControlDB.ingresaralsistema(user, obtiene)){
+                    principal p = new principal();
+                    p.setVisible(true);
+                    login.this.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"USUARIO INCORRECTO");
+                }
+                if (!oControlDB.desconectar()){
+                    JOptionPane.showMessageDialog(this,"va un error de catch 1");
+                }
+            }
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Erro en la conexion"+ex);
+        }
+    }//GEN-LAST:event_ingresarActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+        
+    }//GEN-LAST:event_salirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +212,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JToggleButton salir;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables

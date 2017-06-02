@@ -30,7 +30,6 @@ public class ventas_credito extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        CancelarVenta = new javax.swing.JButton();
         GenerarFactura = new javax.swing.JButton();
         AgregarCliente = new javax.swing.JButton();
         total = new javax.swing.JTextField();
@@ -63,15 +62,6 @@ public class ventas_credito extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CancelarVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        CancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarVentaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, 80, -1));
 
         GenerarFactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         GenerarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176881_Generate-tables.png"))); // NOI18N
@@ -180,11 +170,6 @@ public class ventas_credito extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
 
-    private void CancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVentaActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_CancelarVentaActionPerformed
-
     private void GenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarFacturaActionPerformed
         // TODO add your handling code here:
         ReporteVentasCredito r = new ReporteVentasCredito ();
@@ -230,7 +215,6 @@ public class ventas_credito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarCliente;
-    private javax.swing.JButton CancelarVenta;
     private javax.swing.JButton GenerarFactura;
     private javax.swing.JTable datos;
     private javax.swing.JTextField estado;

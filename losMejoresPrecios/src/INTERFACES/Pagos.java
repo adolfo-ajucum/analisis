@@ -37,7 +37,6 @@ public class Pagos extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         id_proveedor = new javax.swing.JTextField();
-        cancelarpago = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         no_cheque = new javax.swing.JTextField();
@@ -78,15 +77,6 @@ public class Pagos extends javax.swing.JFrame {
         jLabel5.setText("Codigo Proveedor");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 150, 20));
         jPanel1.add(id_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 180, -1));
-
-        cancelarpago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cancelarpago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        cancelarpago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarpagoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cancelarpago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 50, 30));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,11 +132,6 @@ public class Pagos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
 
-    private void cancelarpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarpagoActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_cancelarpagoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -186,7 +171,6 @@ public class Pagos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelarpago;
     private javax.swing.JTextField cantidad;
     private javax.swing.JTextField estado1;
     private com.toedter.calendar.JDateChooser fecha;

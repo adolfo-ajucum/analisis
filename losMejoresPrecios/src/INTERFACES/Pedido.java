@@ -30,7 +30,6 @@ public class Pedido extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        CancelarVenta = new javax.swing.JButton();
         AgregarCliente = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -53,15 +52,6 @@ public class Pedido extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CancelarVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        CancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarVentaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
 
         AgregarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
         jPanel1.add(AgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 140, 120));
@@ -132,11 +122,6 @@ public class Pedido extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
 
-    private void CancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVentaActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_CancelarVentaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -177,7 +162,6 @@ public class Pedido extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarCliente;
-    private javax.swing.JButton CancelarVenta;
     private javax.swing.JTextField Id_pedido;
     private javax.swing.JTextField cantidad;
     private javax.swing.JTable datos;

@@ -34,7 +34,6 @@ public class TipoPagos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         descripcion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cancelarpago = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         id_tipo = new javax.swing.JTextField();
 
@@ -61,15 +60,6 @@ public class TipoPagos extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Descripcion");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 140, -1));
-
-        cancelarpago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cancelarpago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        cancelarpago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarpagoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cancelarpago, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 50, 30));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,11 +92,6 @@ public class TipoPagos extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
-
-    private void cancelarpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarpagoActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_cancelarpagoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,7 +132,6 @@ public class TipoPagos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelarpago;
     private javax.swing.JTextField descripcion;
     private javax.swing.JButton genearpago;
     private javax.swing.JTextField id_tipo;

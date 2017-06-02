@@ -30,7 +30,6 @@ public class ReporteFacturas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        CancelarVenta = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -43,15 +42,6 @@ public class ReporteFacturas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        CancelarVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        CancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarVentaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, -1));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,11 +83,6 @@ public class ReporteFacturas extends javax.swing.JFrame {
         vc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
-
-    private void CancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVentaActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_CancelarVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,7 +127,6 @@ public class ReporteFacturas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelarVenta;
     private javax.swing.JTable datos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

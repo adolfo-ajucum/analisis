@@ -40,7 +40,6 @@ public class vehiculos extends javax.swing.JFrame {
         estado = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
-        CancelarVenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,15 +87,6 @@ public class vehiculos extends javax.swing.JFrame {
         });
         jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 70, 40));
 
-        CancelarVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        CancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarVentaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,11 +108,6 @@ public class vehiculos extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_regresarActionPerformed
-
-    private void CancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVentaActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_CancelarVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,7 +148,6 @@ public class vehiculos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelarVenta;
     private javax.swing.JTextField Placa;
     private javax.swing.JTextField estado;
     private javax.swing.JTextField id_vehiculo;

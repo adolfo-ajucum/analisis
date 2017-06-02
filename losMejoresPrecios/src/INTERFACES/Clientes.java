@@ -46,7 +46,6 @@ public class Clientes extends javax.swing.JFrame {
         correo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
-        CancelarVenta = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         nombre1 = new javax.swing.JTextField();
 
@@ -114,16 +113,7 @@ public class Clientes extends javax.swing.JFrame {
                 regresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 70, 40));
-
-        CancelarVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        CancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarVentaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, -1, -1));
+        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 70, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,11 +141,6 @@ public class Clientes extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
-
-    private void CancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVentaActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_CancelarVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +178,6 @@ public class Clientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelarVenta;
     private javax.swing.JTextField apellido;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;

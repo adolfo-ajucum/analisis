@@ -44,7 +44,6 @@ public class Empleados extends javax.swing.JFrame {
         correo = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
-        salir = new javax.swing.JButton();
         NUEVO = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,15 +106,6 @@ public class Empleados extends javax.swing.JFrame {
         });
         jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 80, 30));
 
-        salir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
-            }
-        });
-        jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 471, 80, 30));
-
         NUEVO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         NUEVO.setText("NUEVO");
         jPanel1.add(NUEVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 425, -1, 30));
@@ -140,11 +130,6 @@ public class Empleados extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
-
-    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_salirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +185,5 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombre;
     private javax.swing.JButton regresar;
-    private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }

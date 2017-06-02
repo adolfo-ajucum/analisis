@@ -40,7 +40,6 @@ public class rutas extends javax.swing.JFrame {
         id_empleado = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
-        CancelarVenta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         zona1 = new javax.swing.JTextField();
 
@@ -90,15 +89,6 @@ public class rutas extends javax.swing.JFrame {
         });
         jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 70, 40));
 
-        CancelarVenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176811_Cancel.png"))); // NOI18N
-        CancelarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarVentaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CancelarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, -1));
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Zona");
@@ -126,11 +116,6 @@ public class rutas extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_regresarActionPerformed
-
-    private void CancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVentaActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_CancelarVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,7 +160,6 @@ public class rutas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelarVenta;
     private javax.swing.JTextField descripcion;
     private javax.swing.JTextField id_empleado;
     private javax.swing.JTextField id_ruta;
