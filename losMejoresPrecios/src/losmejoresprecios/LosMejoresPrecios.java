@@ -7,6 +7,7 @@ package losmejoresprecios;
 
 import CAPADENEGOCIO.cliente;
 import Conection.conectarBD;
+import INTERFACES.login;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,10 +24,8 @@ public class LosMejoresPrecios {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Hola prro
-        //Me hacen falta
-        //conectarBD nuevo=new conectarBD();
-       // Procedimiento();
+         login b = new login();
+        b.setVisible(true);
         
     }
     
