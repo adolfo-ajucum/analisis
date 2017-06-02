@@ -225,10 +225,10 @@ public class Proveedor extends javax.swing.JFrame {
         // Nuevo registro
         try {
             reg.setIdProveedores(Integer.parseInt(this.id_proveedor.getText()));
-            reg.setNit(Integer.parseInt(this.nit.getText()));
+            reg.setNit(this.nit.getText());
             reg.setNombre(this.nombre.getText());
             reg.setDireccion(direccion.getText());
-            reg.setTelefono(Integer.parseInt(telefono.getText()));
+            reg.setTelefono(telefono.getText());
             reg.setCorreo(correo.getText());
             reg.setAccion("new");
         } catch (NumberFormatException e) {
@@ -251,10 +251,10 @@ public class Proveedor extends javax.swing.JFrame {
         int fila = this.TablaDatos.getSelectedRow();
         try {
             reg.setIdProveedores(Integer.parseInt(TablaDatos.getValueAt(fila, 0).toString()));
-            reg.setNit(Integer.parseInt(TablaDatos.getValueAt(fila, 1).toString()));
+            reg.setNit(TablaDatos.getValueAt(fila, 1).toString());
             reg.setNombre(TablaDatos.getValueAt(fila, 2).toString());
             reg.setDireccion(TablaDatos.getValueAt(fila, 3).toString());
-            reg.setTelefono(Integer.parseInt(TablaDatos.getValueAt(fila, 4).toString()));
+            reg.setTelefono(TablaDatos.getValueAt(fila, 4).toString());
             reg.setCorreo(TablaDatos.getValueAt(fila, 5).toString());
 
             reg.setAccion("query");
@@ -263,11 +263,12 @@ public class Proveedor extends javax.swing.JFrame {
         }
 
         id_proveedor.setText(String.valueOf(reg.getIdProveedores()));
-        nit.setText(String.valueOf(reg.getIdProveedores()));
+        nit.setText(reg.getNit());
         nombre.setText(reg.getNombre());
         direccion.setText(reg.getDireccion());
-        telefono.setText(String.valueOf(reg.getIdProveedores()));
-
+        telefono.setText(String.valueOf(reg.getTelefono()));
+        correo.setText(reg.getDireccion());
+        
         this.ELIMINAR.setEnabled(true);
         this.ACTUALIZAR.setEnabled(true);
     }//GEN-LAST:event_TablaDatosMouseClicked
@@ -276,10 +277,10 @@ public class Proveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             reg.setIdProveedores(Integer.parseInt(this.id_proveedor.getText()));
-            reg.setNit(Integer.parseInt(this.nit.getText()));
+            reg.setNit(this.nit.getText());
             reg.setNombre(this.nombre.getText());
             reg.setDireccion(direccion.getText());
-            reg.setTelefono(Integer.parseInt(telefono.getText()));
+            reg.setTelefono(telefono.getText());
             reg.setCorreo(correo.getText());
             reg.setAccion("update");
         } catch (NumberFormatException e) {
@@ -308,11 +309,11 @@ public class Proveedor extends javax.swing.JFrame {
             dtm.removeRow(TablaDatos.getSelectedRow());
             try {
                 reg.setIdProveedores(Integer.parseInt(this.id_proveedor.getText()));
-                reg.setNit(Integer.parseInt(this.nit.getText()));
+                reg.setNit(this.nit.getText());
                 reg.setNombre(this.nombre.getText());
                 reg.setDireccion(direccion.getText());
-                reg.setTelefono(Integer.parseInt(telefono.getText()));
-                reg.setCorreo(correo.getText());
+                reg.setTelefono(telefono.getText());
+                reg.setCorreo(correo.getText()); 
                 reg.setAccion("delete");
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Error" + e);
@@ -344,7 +345,7 @@ public class Proveedor extends javax.swing.JFrame {
             PreparedStatement st = cn.getConexion().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 
-            Object dato[] = new Object[9];
+            Object dato[] = new Object[6];
             while (rs.next()) {
                 for (int i = 0; i < dato.length; i++) {
                     dato[i] = rs.getObject(i + 1);

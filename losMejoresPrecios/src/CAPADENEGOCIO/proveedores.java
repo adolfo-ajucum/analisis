@@ -11,13 +11,13 @@ package CAPADENEGOCIO;
  */
 public class proveedores {
     private int idProveedores;
-    private int nit;
+    private String nit;
     private String nombre;
     private String direccion;
-    private int telefono;
+    private String telefono;
     private String correo;
     private String accion;
-
+ 
     public proveedores(){
         
     }
@@ -30,11 +30,11 @@ public class proveedores {
         this.idProveedores = idProveedores;
     }
 
-    public int getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(int nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
 
@@ -54,11 +54,11 @@ public class proveedores {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -77,6 +77,8 @@ public class proveedores {
     public void setAccion(String accion) {
         this.accion = accion;
     }
+
+    
      
 }
 

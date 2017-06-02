@@ -175,7 +175,7 @@ public class conectarBD {
                 
     }
      
-    public  String ProcedimientoProveedores(int idProveedores, int nit, String nombre, String direccion, int telefono,
+    public  String ProcedimientoProveedores(int idProveedores, String nit, String nombre, String direccion, String telefono,
             String correo,String accion){
         
        String mensaje="";
@@ -188,13 +188,13 @@ public class conectarBD {
             } else {
                 Statement st = con.createStatement();
           
-                CallableStatement sp=con.prepareCall("{call insertar_empleados(?,?,?,?,?,?,?)}");
+                CallableStatement sp=con.prepareCall("{call insertar_proveedores(?,?,?,?,?,?,?)}");
                
                 sp.setInt(1,idProveedores);
-                sp.setInt(2,nit);
+                sp.setString(2,nit);
                 sp.setString(3,nombre);
                 sp.setString(4,direccion);
-                sp.setInt(5,telefono);
+                sp.setString(5,telefono);
                 sp.setString(6,correo);
                 sp.setString(7,accion);
             
