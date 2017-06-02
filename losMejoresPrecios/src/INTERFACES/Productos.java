@@ -348,7 +348,7 @@ public class Productos extends javax.swing.JFrame {
  
         DefaultTableModel modelo = new DefaultTableModel(null, getcolumnas());
 
-        this.TablaDatos.setModel(modelo);
+        this.TablaDatos.setModel(modelo); 
 
         String sql = "SELECT * FROM losMejoresPrecios.productos";
 
