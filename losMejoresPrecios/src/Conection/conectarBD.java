@@ -174,6 +174,47 @@ public class conectarBD {
         return mensaje;
                 
     }
+     
+    public  String ProcedimientoProveedores(int idProveedores, int nit, String nombre, String direccion, int telefono,
+            String correo,String accion){
+        
+       String mensaje="";
+        try {
+            
+             con = getConexion();
+ 
+            if (con == null) {
+                mensaje = "No hay conexión a la base de datos...!";
+            } else {
+                Statement st = con.createStatement();
+          
+                CallableStatement sp=con.prepareCall("{call insertar_empleados(?,?,?,?,?,?,?)}");
+               
+                sp.setInt(1,idProveedores);
+                sp.setInt(2,nit);
+                sp.setString(3,nombre);
+                sp.setString(4,direccion);
+                sp.setInt(5,telefono);
+                sp.setString(6,correo);
+                sp.setString(7,accion);
+            
+               if( sp.execute())
+
+                
+                st.close();
+                con.close();
+                
+               mensaje="Operacion realizada con Exito";
+            }
+        } catch (SQLException e) {
+            mensaje="Error al conectar: "+e;
+        } catch (Exception e) {
+            mensaje="Error: "+e;
+        }
+        
+        return mensaje;
+                
+    }
 
 }
    

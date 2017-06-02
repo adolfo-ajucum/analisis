@@ -5,8 +5,13 @@
  */
 package INTERFACES;
 
-import CAPADENEGOCIO.cliente;
+import CAPADENEGOCIO.proveedores;
 import Conection.conectarBD;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,10 +23,12 @@ public class Proveedor extends javax.swing.JFrame {
      * Creates new form Clientes
      */
     conectarBD cn;
-    cliente reg = new cliente();
+    proveedores reg = new proveedores();
+
     public Proveedor() {
         initComponents();
         setLocationRelativeTo(null);
+        actualizar_pendientes();
     }
 
     /**
@@ -36,19 +43,25 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Nit = new javax.swing.JTextField();
+        nit = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         id_proveedor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        direccion = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        telefono = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         correo = new javax.swing.JTextField();
-        GUARDAR = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDatos = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        direccion = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        telefono = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        ACTUALIZAR = new javax.swing.JButton();
+        ELIMINAR = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        NUEVO = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,14 +71,14 @@ public class Proveedor extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("REGISTRO PROVEEDORES");
+        jLabel1.setText("REGISTRO EMPLEADOS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nit");
+        jLabel2.setText("nit");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
-        jPanel1.add(Nit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 170, -1));
+        jPanel1.add(nit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 170, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,29 +94,9 @@ public class Proveedor extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Direccion");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, -1));
-        jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 170, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Teléfono");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 70, -1));
-        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 170, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Correo");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 50, -1));
-        jPanel1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 170, -1));
-
-        GUARDAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
-        GUARDAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GUARDARActionPerformed(evt);
-            }
-        });
-        jPanel1.add(GUARDAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        jLabel6.setText("Correo");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 110, 20));
+        jPanel1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 170, -1));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,17 +104,111 @@ public class Proveedor extends javax.swing.JFrame {
                 regresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, 70, 40));
+        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 570, 80, 30));
+
+        TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDatosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaDatos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 700, 270));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Direccion");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, -1));
+        jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 170, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Teléfono");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 70, -1));
+        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 170, -1));
+
+        jPanel2.setBackground(java.awt.Color.lightGray);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Opciones")));
+
+        ACTUALIZAR.setText("Editar");
+        ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACTUALIZARActionPerformed(evt);
+            }
+        });
+
+        ELIMINAR.setText("Eliminar");
+        ELIMINAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ELIMINARActionPerformed(evt);
+            }
+        });
+
+        Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+
+        NUEVO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        NUEVO.setText("NUEVO");
+        NUEVO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NUEVOActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(ACTUALIZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(NUEVO, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NUEVO, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ACTUALIZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 520, 130));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
         );
 
         pack();
@@ -132,13 +219,166 @@ public class Proveedor extends javax.swing.JFrame {
         principal p = new principal();
         p.setVisible(true);
         this.dispose();
-        
     }//GEN-LAST:event_regresarActionPerformed
+ 
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        // Nuevo registro
+        try {
+            reg.setIdProveedores(Integer.parseInt(this.id_proveedor.getText()));
+            reg.setNit(Integer.parseInt(this.nit.getText()));
+            reg.setNombre(this.nombre.getText());
+            reg.setDireccion(direccion.getText());
+            reg.setTelefono(Integer.parseInt(telefono.getText()));
+            reg.setCorreo(correo.getText());
+            reg.setAccion("new");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
+        }
+        cn = new conectarBD(); 
+        String res = cn.ProcedimientoProveedores(reg.getIdProveedores(), reg.getNit(),reg.getNombre(),
+                reg.getDireccion(), reg.getTelefono(),reg.getCorreo(), reg.getAccion());
+        JOptionPane.showMessageDialog(null, "" + res);
 
-    private void GUARDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUARDARActionPerformed
+        actualizar_pendientes();
+        Borrar();
+        this.ELIMINAR.setEnabled(true);
+        this.ACTUALIZAR.setEnabled(true);
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void TablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosMouseClicked
+        //Lanzar datos a panel ingreso de Datos
+
+        int fila = this.TablaDatos.getSelectedRow();
+        try {
+            reg.setIdProveedores(Integer.parseInt(TablaDatos.getValueAt(fila, 0).toString()));
+            reg.setNit(Integer.parseInt(TablaDatos.getValueAt(fila, 1).toString()));
+            reg.setNombre(TablaDatos.getValueAt(fila, 2).toString());
+            reg.setDireccion(TablaDatos.getValueAt(fila, 3).toString());
+            reg.setTelefono(Integer.parseInt(TablaDatos.getValueAt(fila, 4).toString()));
+            reg.setCorreo(TablaDatos.getValueAt(fila, 5).toString());
+
+            reg.setAccion("query");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
+        }
+
+        id_proveedor.setText(String.valueOf(reg.getIdProveedores()));
+        nit.setText(String.valueOf(reg.getIdProveedores()));
+        nombre.setText(reg.getNombre());
+        direccion.setText(reg.getDireccion());
+        telefono.setText(String.valueOf(reg.getIdProveedores()));
+
+        this.ELIMINAR.setEnabled(true);
+        this.ACTUALIZAR.setEnabled(true);
+    }//GEN-LAST:event_TablaDatosMouseClicked
+
+    private void ACTUALIZARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACTUALIZARActionPerformed
         // TODO add your handling code here:
+        try {
+            reg.setIdProveedores(Integer.parseInt(this.id_proveedor.getText()));
+            reg.setNit(Integer.parseInt(this.nit.getText()));
+            reg.setNombre(this.nombre.getText());
+            reg.setDireccion(direccion.getText());
+            reg.setTelefono(Integer.parseInt(telefono.getText()));
+            reg.setCorreo(correo.getText());
+            reg.setAccion("update");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
+        }
+        cn = new conectarBD();
+        String res = cn.ProcedimientoProveedores(reg.getIdProveedores(), reg.getNit(),reg.getNombre(),
+                reg.getDireccion(), reg.getTelefono(),reg.getCorreo(), reg.getAccion());
+        JOptionPane.showMessageDialog(null, "" + res);
         
-    }//GEN-LAST:event_GUARDARActionPerformed
+        actualizar_pendientes();
+        Borrar();
+    }//GEN-LAST:event_ACTUALIZARActionPerformed
+
+    private void ELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ELIMINARActionPerformed
+        // TODO add your handling code here:
+
+        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
+        if (resp == 0) {
+            DefaultTableModel dtm = (DefaultTableModel) TablaDatos.getModel(); //TableProducto es el nombre de mi tabla ;) 
+            int fila = TablaDatos.getSelectedRow();
+            if (fila < 1) {
+                this.ELIMINAR.setEnabled(false);
+                this.ACTUALIZAR.setEnabled(false);
+            }
+            dtm.removeRow(TablaDatos.getSelectedRow());
+            try {
+                reg.setIdProveedores(Integer.parseInt(this.id_proveedor.getText()));
+                reg.setNit(Integer.parseInt(this.nit.getText()));
+                reg.setNombre(this.nombre.getText());
+                reg.setDireccion(direccion.getText());
+                reg.setTelefono(Integer.parseInt(telefono.getText()));
+                reg.setCorreo(correo.getText());
+                reg.setAccion("delete");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Error" + e);
+            }
+            cn = new conectarBD();
+            String res = cn.ProcedimientoProveedores(reg.getIdProveedores(), reg.getNit(),reg.getNombre(),
+            reg.getDireccion(), reg.getTelefono(),reg.getCorreo(), reg.getAccion());
+            JOptionPane.showMessageDialog(null, "" + res);
+        }
+        actualizar_pendientes();
+        Borrar();
+    }//GEN-LAST:event_ELIMINARActionPerformed
+
+    private void NUEVOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NUEVOActionPerformed
+        // TODO add your handling code here:
+        Borrar();
+    }//GEN-LAST:event_NUEVOActionPerformed
+    void actualizar_pendientes() {
+
+        DefaultTableModel modelo = new DefaultTableModel(null, getcolumnas());
+
+        this.TablaDatos.setModel(modelo);
+
+        String sql = "SELECT * FROM losMejoresPrecios.proveedores";
+
+        try {
+            cn = new conectarBD();
+
+            PreparedStatement st = cn.getConexion().prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+
+            Object dato[] = new Object[9];
+            while (rs.next()) {
+                for (int i = 0; i < dato.length; i++) {
+                    dato[i] = rs.getObject(i + 1);
+
+                }
+
+                modelo.addRow(dato);
+            }
+
+            this.TablaDatos.setModel(modelo);
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "" + ex);       
+        }
+       this.ELIMINAR.setEnabled(false);
+        this.ACTUALIZAR.setEnabled(false);
+
+    }
+
+    void Borrar() {
+        id_proveedor.setText("");
+        nit.setText("");
+        nombre.setText("");
+        direccion.setText("");
+        telefono.setText("");
+        correo.setText("");
+        this.ELIMINAR.setEnabled(false);
+        this.ACTUALIZAR.setEnabled(false);
+    }
+
+    private String[] getcolumnas() {
+        String columna[] = new String[]{"Id", "Nit", "Nombre", "Direccion", "Telefono", "Correo"};
+        return columna;
+    }
 
     /**
      * @param args the command line arguments
@@ -167,6 +407,8 @@ public class Proveedor extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -177,8 +419,11 @@ public class Proveedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton GUARDAR;
-    private javax.swing.JTextField Nit;
+    private javax.swing.JButton ACTUALIZAR;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton ELIMINAR;
+    private javax.swing.JButton NUEVO;
+    private javax.swing.JTable TablaDatos;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;
     private javax.swing.JTextField id_proveedor;
@@ -188,8 +433,11 @@ public class Proveedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nit;
     private javax.swing.JTextField nombre;
     private javax.swing.JButton regresar;
     private javax.swing.JTextField telefono;

@@ -16,14 +16,10 @@ public class proveedores {
     private String direccion;
     private int telefono;
     private String correo;
+    private String accion;
 
-    public proveedores(int idProveedores, int nit, String nombre, String direccion, int telefono, String correo) {
-        this.idProveedores = idProveedores;
-        this.nit = nit;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.correo = correo;
+    public proveedores(){
+        
     }
 
     public int getIdProveedores() {
@@ -72,6 +68,14 @@ public class proveedores {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
     }
      
 }
