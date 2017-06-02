@@ -5,12 +5,31 @@
  */
 package INTERFACES;
 
+import CAPADENEGOCIO.cliente;
 import Conection.conectarBD;
+import java.awt.Label;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.util.logging.Level;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,9 +40,13 @@ public class Empleados extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
+    conectarBD cn;
+    cliente reg =new cliente ();
+
     public Empleados() {
         initComponents();
         setLocationRelativeTo(null);
+         actualizar_pendientes();
     }
 
     /**
@@ -42,16 +65,26 @@ public class Empleados extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         apellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cargo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         id_empleado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        direccion = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        correo = new javax.swing.JTextField();
+        salario = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
         regresar = new javax.swing.JButton();
         NUEVO = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        direccion1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        JCBsexo = new javax.swing.JComboBox<>();
+        cargo = new javax.swing.JComboBox<>();
+        fecha = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        telefono = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,10 +112,7 @@ public class Empleados extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cargo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 40, -1));
-
-        cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "vendedor", "gerente" }));
-        jPanel1.add(cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 170, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 40, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,15 +122,9 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Direccion");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 70, -1));
-        jPanel1.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 170, -1));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Sueldo");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 50, -1));
-        jPanel1.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
+        jLabel6.setText("Salario");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 110, 20));
+        jPanel1.add(salario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, 170, -1));
 
         Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496176447_user-add.png"))); // NOI18N
         Agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +132,7 @@ public class Empleados extends javax.swing.JFrame {
                 AgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, 90, 70));
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES/1496182226_arrow-return-180.png"))); // NOI18N
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,21 +140,96 @@ public class Empleados extends javax.swing.JFrame {
                 regresarActionPerformed(evt);
             }
         });
-        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 80, 30));
+        jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, 80, 30));
 
         NUEVO.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         NUEVO.setText("NUEVO");
-        jPanel1.add(NUEVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 425, -1, 30));
+        jPanel1.add(NUEVO, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, -1, 30));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 700, 270));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Direccion");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, -1));
+        jPanel1.add(direccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 170, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("TELEFONO");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 70, -1));
+
+        JCBsexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        JCBsexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBsexoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(JCBsexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 70, -1));
+
+        cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cobrador", "Vendedor", "Encargado de compras", "Encargado  Tienda", " " }));
+        cargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
+        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 170, 30));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Sexo");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 70, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Fecha Ingreso");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 110, 20));
+        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 170, -1));
+
+        jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 100, 50));
+
+        jButton2.setText("Eliminar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 80, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
         );
 
         pack();
@@ -138,16 +237,194 @@ public class Empleados extends javax.swing.JFrame {
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         // TODO add your handling code here:
-        principal p = new principal ();
+        principal p = new principal();
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_regresarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        // TODO add your handling code here:
-        
-       
+        // Nuevo registro
+       try{ 
+       reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
+       reg.setNombre(this.nombre.getText());
+       reg.setApellido(this.apellido.getText());
+       reg.setDireccion(direccion1.getText());
+       reg.setTelefono(Integer.parseInt(telefono.getText()));
+       reg.setSexo(this.JCBsexo.getSelectedItem().toString());
+       reg.setCargo(cargo.getSelectedItem().toString());
+       reg.setFechaingreso(fecha.getDateFormatString());
+       reg.setSalario(salario.getText());
+       reg.setAccion("new");
+       }catch(NumberFormatException e){
+        JOptionPane.showMessageDialog(null,"Error" +e);   
+       }  
+      cn=new conectarBD();
+    String res= cn.Procedimiento(reg.getCodEmp(),reg.getNombre(),reg.getApellido(),
+              reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
+                reg.getSalario(),reg.getAccion());
+        JOptionPane.showMessageDialog(null,"" +res);   
+      
+
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void JCBsexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBsexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBsexoActionPerformed
+
+    private void cargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cargoActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+
+        int fila = this.jTable1.getSelectedRow();
+
+        /*for (i = 0; i <this.jTable1.getColumnCount(); i++) {
+        
+        
+        String valor = (String) jTable1.getValueAt(fila, i).toString();
+        valores += valor;
+        // Con esta condición solo ponemos comas hasta el penúltimo valor :)
+        if (i < (fila-1)) {
+        valores += ", ";
+        }
+        
+        }*/
+       
+       try{ 
+       reg.setCodEmp(Integer.parseInt(jTable1.getValueAt(fila, 0).toString()));
+       reg.setNombre(jTable1.getValueAt(fila, 1).toString());
+       reg.setApellido(jTable1.getValueAt(fila, 2).toString());
+       reg.setDireccion(jTable1.getValueAt(fila, 3).toString());
+       reg.setTelefono(Integer.parseInt(jTable1.getValueAt(fila, 4).toString()));
+       reg.setSexo(jTable1.getValueAt(fila, 5).toString());
+       
+       reg.setCargo(jTable1.getValueAt(fila, 6).toString());
+       
+       reg.setFechaingreso(jTable1.getValueAt(fila, 7).toString());
+       reg.setSalario(jTable1.getValueAt(fila, 8).toString());
+       reg.setAccion("query");
+       }catch(NumberFormatException e){
+        JOptionPane.showMessageDialog(null,"Error" +e);   
+       }  
+      
+       id_empleado.setText(String.valueOf(reg.getCodEmp()));
+       nombre.setText(reg.getNombre());
+       apellido.setText(reg.getApellido());
+       direccion1.setText(reg.getDireccion());
+       telefono.setText(String.valueOf(reg.getTelefono()));
+       salario.setText(reg.getSalario());
+       fecha.setDateFormatString(reg.getFechaingreso());
+       
+             String itemSeleecionado = jTable1.getValueAt(fila, 5).toString();
+if ("F".equals(itemSeleecionado) ){
+   this.JCBsexo.setSelectedIndex(1);
+}else{
+    this.JCBsexo.setSelectedIndex(0);
+}
+       
+itemSeleecionado = jTable1.getValueAt(fila, 6).toString();
+    
+    switch(itemSeleecionado){
+        case "Cobrador":  this.cargo.setSelectedIndex(0); 
+        break;
+         case "Vendedor":  this.cargo.setSelectedIndex(1);
+         break;
+         case "Encargado de compras": this.cargo.setSelectedIndex(2);
+          break;
+         case "Encargado  Tienda": this.cargo.setSelectedIndex(3);
+          break;
+          
+         default: this.cargo.setSelectedIndex(0); 
+         break;       
+
+    }
+
+ 
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+  try{ 
+       reg.setCodEmp(Integer.parseInt(this.id_empleado.getText()));
+       reg.setNombre(this.nombre.getText());
+       reg.setApellido(this.apellido.getText());
+       reg.setDireccion(direccion1.getText());
+       reg.setTelefono(Integer.parseInt(telefono.getText()));
+       reg.setSexo(this.JCBsexo.getSelectedItem().toString());
+       reg.setCargo(cargo.getSelectedItem().toString());
+       reg.setFechaingreso(fecha.getDateFormatString());
+       reg.setSalario(salario.getText());
+       reg.setAccion("update");
+       }catch(NumberFormatException e){
+        JOptionPane.showMessageDialog(null,"Error" +e);   
+       }  
+      cn=new conectarBD();
+    String res= cn.Procedimiento(reg.getCodEmp(),reg.getNombre(),reg.getApellido(),
+              reg.getDireccion(),reg.getTelefono(),reg.getSexo(),reg.getCargo(),reg.getFechaingreso(),
+                reg.getSalario(),reg.getAccion());
+        JOptionPane.showMessageDialog(null,"" +res);   
+        
+     
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+       
+        
+        int resp = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
+        if(resp==0){
+         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel(); //TableProducto es el nombre de mi tabla ;) 
+         int fila=jTable1.getSelectedRow();  
+         if (fila< 1) {
+          this.jButton2.setEnabled(false);
+         } 
+          dtm.removeRow(jTable1.getSelectedRow()); 
+        }
+      
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+    void actualizar_pendientes() {
+
+        DefaultTableModel modelo = new DefaultTableModel(null,getcolumnas());
+       
+
+        this.jTable1.setModel(modelo);
+
+        String sql = "SELECT * FROM losMejoresPrecios.empleado";
+        
+          boolean rp =false;
+        try {
+            cn = new conectarBD();
+            
+            PreparedStatement st = cn.getConexion().prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+           
+            Object dato[]=new Object[9];
+            while (rs.next()) {
+                for (int i = 0; i < dato.length; i++) {
+                   dato[i]=rs.getObject(i+1);
+                    
+                }
+                
+                modelo.addRow(dato);
+            }
+          
+            this.jTable1.setModel(modelo);
+        } catch (SQLException ex) {
+           
+            System.out.println(ex);
+        }
+        //
+        
+    }
+    
+        private String[] getcolumnas(){
+            String columna[]=new String[]{"Id","Nombre","Apellido","Direccion","Telefono","Sexo","Cargo","Fecha Ingreo","Salario"};
+            return columna;
+        }
+                
 
     /**
      * @param args the command line arguments
@@ -187,21 +464,31 @@ public class Empleados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
+    private javax.swing.JComboBox<String> JCBsexo;
     private javax.swing.JButton NUEVO;
     private javax.swing.JTextField apellido;
     private javax.swing.JComboBox<String> cargo;
-    private javax.swing.JTextField correo;
-    private javax.swing.JTextField direccion;
+    private javax.swing.JTextField direccion1;
+    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JTextField id_empleado;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;
     private javax.swing.JButton regresar;
+    private javax.swing.JTextField salario;
+    private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 }

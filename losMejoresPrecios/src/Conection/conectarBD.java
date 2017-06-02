@@ -5,12 +5,14 @@ package Conection;
  */
 
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 
 public class conectarBD {
 //Datos para la conexion
@@ -124,75 +126,50 @@ public class conectarBD {
      
      //---FIN DE LA MODIFICACION MARLON---------------------------------------------------
     
-    /**
-     * Permite Instertar Registros a la BD
-     * @param Codigo
-     * @param Nombre
-     * @param Sexo
-     * @param Parentesco
-     * @return
-     */
-    public boolean insertardatos(Integer Codigo, String Nombre, String Sexo,String Parentesco){  
-        try{
-         String sentenciaingresar="INSERT INTO " + "personas " + " VALUES ("
-                 + "\""+Codigo+"\","
-                + "\""+Nombre+"\","
-                 + "\""+Sexo+"\","
-                + "\""+Parentesco+"\")";  
-        Statement st=getConexion().createStatement();
-       // System.out.println(sentenciaingresar);
-        st.executeUpdate(sentenciaingresar);
-        return true; //"Datos almacenados correctamente";
-   
-        }catch(SQLException ex){
-  
-            return false; //"Error en el almacenamiento de datos"+ex;
-        }
-   }
-
-    /**
-     * Permite Editar Un Registro en la BD
-     * @param codigo
-     * @param nuevonombre
-     * @return
-     */
-    public boolean EditarR(Integer codigo,String nuevonombre){
+     public  String Procedimiento(int codEmp, String nombre, String apellido, String direccion, int telefono, String sexo, String cargo, String fechaingreso, String salario, String accion){
         
-       try {
-              String realizarAvance="UPDATE "+ " datos_arbol.personas " + " SET nombre ='"  + nuevonombre+ "' WHERE "+" codigo="+codigo;
-            Statement st =(Statement) getConexion().createStatement();
-            st.executeUpdate(realizarAvance);
-            return true;
- 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-           
-          return false;
-
-        }
-    }
- 
-    /**
-     * Realiza la elimiacion de un registro
-     * @param codigo
-     * @return
-     */
-    public boolean Elminiar(Integer codigo) {
+       String mensaje="Operaacion Realizada con Exito";
         try {
-            String eliminarnodo="DELETE FROM " + "datos_arbol.personas" + " WHERE codigo = " + codigo;
-            //String eliminarProy = "DELETE FROM " + table_name + " WHERE codigoProyecto = \"" + codigo + "\"";
-            Statement st =(Statement) getConexion().createStatement();
-            st.executeUpdate(eliminarnodo); 
-            return true;
+            
+             con = getConexion();
  
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-           // JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");
-          return false;
-
+            if (con == null) {
+                mensaje = "No hay conexión a la base de datos...!";
+            } else {
+                Statement st = con.createStatement();
+          
+                CallableStatement sp=con.prepareCall("{call insertar_empleados(?,?,?,?,?,?,?,?,?,?)}");
+               
+                sp.setInt(1,codEmp);
+                //sp.registerOutParameter(1, java.sql.Types.INTEGER); 
+                sp.setString(2,nombre);
+                sp.setString(3,apellido);
+                sp.setString(4,direccion);
+                sp.setInt(5,telefono);
+                sp.setString(6,sexo);
+                sp.setString(7,cargo);
+               java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+               // java.sql.Date sqlDate = new java.sql.Date(20110801);
+                sp.setDate(8,sqlDate);
+                sp.setString(9,salario);
+                sp.setString(10,accion);
+            
+                sp.execute();
+                
+                st.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            mensaje="Error al conectar: "+e;
+        } catch (Exception e) {
+            mensaje="Error: "+e;
         }
+        
+        System.out.println(mensaje); 
+        return mensaje;
+                
     }
- 
+
 }
    
   
